@@ -1,5 +1,6 @@
 import {
   Box,
+  Link,
   Paper,
   Skeleton,
   Table,
@@ -11,8 +12,11 @@ import {
   Typography,
 } from "@mui/material";
 import TypeChip from "./type-chip";
+import { useNavigate } from "react-router-dom";
 
 export default function TableView({ movies, pageSize, isLoading }) {
+  const navigate = useNavigate();
+
   return (
     <TableContainer component={Paper} sx={{ height: "80vh", overflow: "auto" }}>
       <Table sx={{ minWidth: 650, minHeight: 700 }}>
@@ -54,16 +58,24 @@ export default function TableView({ movies, pageSize, isLoading }) {
                     <img
                       src={row.Poster}
                       alt={`${row.Title} poster`}
+                      onClick={() => navigate(`movie/${row?.imdbID}`)}
                       style={{
                         maxHeight: "150px",
                         borderRadius: "8px",
                         boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                         objectFit: "cover",
+                        cursor: "pointer",
                       }}
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body1">{row.Title}</Typography>
+                    <Link
+                      component="button"
+                      onClick={() => navigate(`movie/${row?.imdbID}`)}
+                      underline="hover"
+                    >
+                      <Typography variant="body1">{row.Title}</Typography>
+                    </Link>
                   </TableCell>
                   <TableCell>
                     <TypeChip type={row.Type} />

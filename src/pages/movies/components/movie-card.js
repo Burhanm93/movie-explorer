@@ -1,7 +1,10 @@
 import { Box, Chip, Typography } from "@mui/material";
 import TypeChip from "./type-chip";
+import { useNavigate } from "react-router-dom";
 
 export default function MovieCard({ movie }) {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -16,7 +19,9 @@ export default function MovieCard({ movie }) {
         position: "relative",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
         height: 550,
+        cursor: "pointer",
       }}
+      onClick={() => navigate(`movie/${movie?.imdbID}`)}
     >
       <Box
         sx={{
@@ -24,6 +29,7 @@ export default function MovieCard({ movie }) {
           top: 8,
           right: 8,
           margin: 1,
+          zIndex: 1,
         }}
       >
         <TypeChip type={movie.Type} />
@@ -39,6 +45,11 @@ export default function MovieCard({ movie }) {
           objectFit: "cover",
           borderRadius: 2,
           marginBottom: 1,
+          transition: "transform 0.3s ease-in-out",
+          "&:hover": {
+            transform: "scale(1.03)",
+            cursor: "pointer",
+          },
         }}
       />
       <Typography variant="body1" fontWeight="bold">
