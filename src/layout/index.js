@@ -13,7 +13,6 @@ const Layout = () => {
         sx={{
           height: 100,
           justifyContent: "center",
-          backgroundColor: "#1a237e",
           cursor: "pointer",
         }}
         onClick={() => navigate("/")}
@@ -21,11 +20,8 @@ const Layout = () => {
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <MovieIcon sx={{ fontSize: 40, color: "#fff" }} />
-            <Typography
-              variant="h4"
-              component="div"
-              sx={{ fontWeight: "bold", color: "#fff" }}
-            >
+
+            <Typography variant="h4" component="div">
               Movie Explorer
             </Typography>
           </Box>

@@ -19,8 +19,8 @@ export default function MoviesPage({ ...props }) {
     type: null,
   });
 
-  const { data, isLoading, error } = useQuery(
-    ["movies", currentPage, filters],
+  const { data, isLoading } = useQuery(
+    ["movies", currentPage, filters], //when filter or page changes, another query fetches data
     async () => {
       const response = await axios.get(
         `https://www.omdbapi.com/?apikey=1d8b1833&page=${currentPage}&s=${
@@ -37,6 +37,7 @@ export default function MoviesPage({ ...props }) {
   );
 
   const debouncedSearch = useCallback(
+    //to prevent fire request every keypress, debounce is used. It waits 600ms for evry keypress and then fires the request
     debounce((query) => {
       setFilters((prev) => ({ ...prev, word: query }));
       setCurrentPage(1);
@@ -46,7 +47,7 @@ export default function MoviesPage({ ...props }) {
 
   return (
     <Box>
-      <Toolbar
+      <Toolbar //filters and view buttons
         onSetTypeFilter={(value) => {
           setFilters((prev) => ({
             ...prev,

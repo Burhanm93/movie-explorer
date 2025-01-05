@@ -18,8 +18,8 @@ export default function TableView({ movies, pageSize, isLoading }) {
   const navigate = useNavigate();
 
   return (
-    <TableContainer component={Paper} sx={{ height: "80vh", overflow: "auto" }}>
-      <Table sx={{ minWidth: 650, minHeight: 700 }}>
+    <TableContainer component={Paper} sx={{ backgroundColor: "#f9f9f9" }}>
+      <Table sx={{ minHeight: 700 }}>
         <TableHead>
           <TableRow>
             <TableCell>
@@ -46,25 +46,30 @@ export default function TableView({ movies, pageSize, isLoading }) {
                 .map((_, index) => (
                   <TableRow key={index}>
                     <TableCell colSpan={5}>
-                      <Box sx={{ width: "100%" }}>
+                      <Box sx={{ width: "100%", height: 50 }}>
                         <Skeleton animation="wave" />
                       </Box>
                     </TableCell>
                   </TableRow>
                 ))
             : movies?.Search?.map((row) => (
-                <TableRow key={row.imdbID}>
+                <TableRow key={row.imdbID} sx={{ height: 50 }}>
                   <TableCell sx={{ width: "120px" }}>
-                    <img
+                    <Box
+                      component="img"
                       src={row.Poster}
                       alt={`${row.Title} poster`}
                       onClick={() => navigate(`movie/${row?.imdbID}`)}
-                      style={{
-                        maxHeight: "150px",
-                        borderRadius: "8px",
-                        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                      sx={{
+                        width: "100%",
                         objectFit: "cover",
-                        cursor: "pointer",
+                        borderRadius: 2,
+                        height: "150px",
+                        transition: "transform 0.3s ease-in-out",
+                        "&:hover": {
+                          transform: "scale(1.05)",
+                          cursor: "pointer",
+                        },
                       }}
                     />
                   </TableCell>

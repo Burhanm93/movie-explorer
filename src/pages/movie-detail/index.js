@@ -9,7 +9,6 @@ import {
   Divider,
   Skeleton,
 } from "@mui/material";
-import { Star as StarIcon } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
@@ -30,8 +29,6 @@ export default function MovieDetailPage({ ...props }) {
       refetchOnWindowFocus: false,
     }
   );
-
-  console.log(id);
 
   return (
     <Box sx={{ pt: 1, px: 5, maxWidth: "100%" }}>
