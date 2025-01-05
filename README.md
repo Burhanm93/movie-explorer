@@ -1,4 +1,4 @@
-# Movie Exporer App
+# Movie Explorer App
 
 ## Available Scripts
 
